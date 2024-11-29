@@ -1,6 +1,9 @@
 ﻿// Write required code.
 
 // Data - do not change it in code!
+using System.ComponentModel;
+using System.ComponentModel.Design;
+
 string[] names = {
     "Mickey Mouse", "Minnie Mouse", "Donald Duck", "Goofy", "Pluto", "Daisy Duck", "Simba", "Nala", 
     "Timon", "Pumbaa", "Mufasa", "Ariel", "Flounder", "Sebastian", "Ursula", "Belle", "Beast", "Gaston", 
@@ -14,9 +17,22 @@ string[] names = {
 // After last element should be ".".
 void PrintGroups(string[] t, int perLine)
 {
-
-    // Write required code.
-
+    for (int number = 0; number < t.Length; number++)
+    {
+        Console.Write(t[number]);
+        if (number == t.Length - 1)
+        {
+            Console.Write(".");
+        }
+        else if ((number + 1) % perLine == 0)
+        {
+            Console.WriteLine(", ");
+        }
+        else
+        {
+            Console.Write(", ");
+        }
+    }
 }
 
 
@@ -27,8 +43,34 @@ void PrintGroups(string[] t, int perLine)
 
 void PrintColumns(string[] t, int perLine, int width)
 {
+    for (int number = 0; number < t.Length; number++)
+    {
 
-    // Write required code.
+        //trim if needed
+        string element;
+        if (t[number].Length > width)
+        {
+            element = t[number].Substring(0, width);
+        }
+        else
+        {
+            element = t[number];
+        }
+
+        //width adjustment by using PadRight (or PadLeft)
+        Console.Write(element.PadRight(width));
+
+        //Add "| "
+        if ((number + 1) % perLine == 0 || number == t.Length - 1)
+            {
+            //end of line
+            Console.WriteLine();
+            }
+        else
+        {
+            Console.Write("| ");
+        }
+    }
 
 }
 
